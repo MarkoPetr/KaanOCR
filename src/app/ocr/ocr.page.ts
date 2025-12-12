@@ -19,15 +19,12 @@ export class OcrPage {
   async onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (!file) return;
-
     this.loading = true;
-
     try {
       this.results = await this.ocrService.recognizeImage(file);
     } catch (err) {
       console.error('OCR error:', err);
     }
-
     this.loading = false;
   }
 }

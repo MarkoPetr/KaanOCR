@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'ocr',
     loadComponent: () =>
       import('./ocr/ocr.page').then((m) => m.OcrPage),
-  }
+  },
 ];
 
 @NgModule({

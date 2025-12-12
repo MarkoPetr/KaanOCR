@@ -1,20 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>OCR Mozzart</ion-title>
+    <ion-title>OCR</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label>Izaberi screenshot</ion-label>
-    <input type="file" (change)="onFileSelected($event)">
-  </ion-item>
+  <ion-button expand="full">
+    <input type="file" (change)="onFileSelected($event)" />
+  </ion-button>
 
-  <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
+  <ion-spinner *ngIf="loading"></ion-spinner>
 
   <ion-list>
-    <ion-item *ngFor="let line of results">
-      {{ line }}
-    </ion-item>
+    <ion-item *ngFor="let line of results">{{ line }}</ion-item>
   </ion-list>
 </ion-content>
