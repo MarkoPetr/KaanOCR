@@ -1,0 +1,7 @@
+{
+  "name": "MozzartOCRApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
