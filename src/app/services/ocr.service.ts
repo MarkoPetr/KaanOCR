@@ -11,9 +11,7 @@ export class OcrService {
   async recognizeImage(file: File): Promise<string[]> {
     try {
       const { data: { text } } = await Tesseract.recognize(file, 'eng');
-      const lines = text.split('\n')
-                        .map((l: string) => l.trim())
-                        .filter((l: string) => l.length > 0);
+      const lines = text.split('\n').map((l: string) => l.trim()).filter((l: string) => l.length > 0);
       return lines;
     } catch (err) {
       console.error('Tesseract OCR error:', err);
