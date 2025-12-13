@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-tab1',
@@ -8,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  async openMozzart() {
+    await Browser.open({
+      url: 'https://www.mozzartbet.com/sr/rezultati?events=finished',
+      presentationStyle: 'fullscreen'
+    });
+  }
 
 }
