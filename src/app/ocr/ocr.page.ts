@@ -6,25 +6,28 @@ import { OcrService } from '../services/ocr.service';
 @Component({
   selector: 'app-ocr',
   standalone: true,
+  imports: [IonicModule, CommonModule],
   templateUrl: './ocr.page.html',
   styleUrls: ['./ocr.page.scss'],
-  imports: [CommonModule, IonicModule]
 })
 export class OcrPage {
-  results: string[] = [];
-  loading: boolean = false;
+
+  results: string = '';
+  loading = false;
 
   constructor(private ocrService: OcrService) {}
 
   async onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (!file) return;
+
     this.loading = true;
     try {
       this.results = await this.ocrService.recognizeImage(file);
-    } catch (err) {
-      console.error('OCR error:', err);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      this.loading = false;
     }
-    this.loading = false;
   }
 }
