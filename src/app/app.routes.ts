@@ -8,15 +8,6 @@ export const routes: Routes = [
   },
   {
     path: 'tab1',
-    loadComponent: () =>
-      import('./tab1/tab1.page').then(m => m.Tab1Page)
-  },
-  {
-    path: 'tab1',
-    loadComponent: () => import('./tab1/tab1.page').then( m => m.Tab1Page)
-  },
-  {
-    path: 'tab1',
-    loadComponent: () => import('./tab1/tab1.page').then( m => m.Tab1Page)
+    loadComponent: () => import('./tab1/tab1.page').then(m => m.Tab1Page)
   }
 ];
