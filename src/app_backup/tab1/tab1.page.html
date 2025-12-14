@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Digitalni papir</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="pickScreenshot()">
+        Izaberi screenshot
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="screenshotData" class="paper">
+    <img [src]="screenshotData" />
+  </div>
+</ion-content>
