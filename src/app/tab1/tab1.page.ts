@@ -1,8 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { OcrService } from '../services/ocr.service';
-import html2canvas from 'html2canvas';
+import { CommonModule } from '@angular/common';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-tab1',
@@ -13,29 +12,24 @@ import html2canvas from 'html2canvas';
 })
 export class Tab1Page {
 
-  @ViewChild('mozartFrame', { static: false }) mozartFrame!: ElementRef<HTMLIFrameElement>;
-  @ViewChild('iframeContainer', { static: false }) iframeContainer!: ElementRef<HTMLDivElement>;
+  screenshotData: string | null = null;
 
-  loading = false;
-  ocrText: string = '';
-
-  constructor(private ocrService: OcrService) {}
-
-  async takeScreenshot() {
-    this.loading = true;
+  async pickScreenshot() {
     try {
-      // html2canvas ne može da "pročita" cross-origin iframe, zato koristimo wrapper div
-      const canvas = await html2canvas(this.iframeContainer.nativeElement, {
-        useCORS: true,
-        allowTaint: true,
+      const photo = await Camera.getPhoto({
+        source: CameraSource.Photos,
+        resultType: CameraResultType.DataUrl
       });
 
-      const base64 = canvas.toDataURL('image/png');
-      this.ocrText = await this.ocrService.recognize(base64);
-    } catch (err) {
-      console.error('Greška pri OCR:', err);
-    } finally {
-      this.loading = false;
+      if (photo.dataUrl) {
+        this.screenshotData = photo.dataUrl;
+      } else {
+        this.screenshotData = null;
+      }
+
+    } catch (e) {
+      console.error('Greška pri izboru screenshota', e);
+      this.screenshotData = null;
     }
   }
 }

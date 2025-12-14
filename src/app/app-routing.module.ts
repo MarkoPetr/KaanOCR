@@ -1,21 +1,13 @@
+import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
-  },
-  {
-    path: 'ocr',
-    loadComponent: () =>
-      import('./ocr/ocr.page').then((m) => m.OcrPage),
-  },
+  { path: '', redirectTo: 'tabs/tab1', pathMatch: 'full' },
+  { path: 'tabs', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsModule) }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

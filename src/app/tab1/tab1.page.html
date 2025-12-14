@@ -1,30 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Mozzart OCR</ion-title>
+    <ion-title>Digital Paper</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="takeScreenshot()" [disabled]="loading">
-        📸 Screenshot
-      </ion-button>
+      <ion-button (click)="pickScreenshot()">📁 Izaberi Screenshot</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- Wrapper div za html2canvas -->
-  <div #iframeContainer style="width:100%; height:50%; border:none;">
-    <iframe
-      #mozartFrame
-      src="https://www.mozzartbet.com"
-      style="width:100%; height:100%; border:none;">
-    </iframe>
+<ion-content class="ion-padding">
+  <div *ngIf="screenshotData">
+    <img [src]="screenshotData" style="width:100%; height:auto; border:1px solid #000;" />
   </div>
-
-  <ion-card *ngIf="ocrText">
-    <ion-card-header>
-      <ion-card-title>OCR rezultat</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <pre>{{ ocrText }}</pre>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="!screenshotData">
+    <p>Izaberi screenshot da bude prikazan kao papir.</p>
+  </div>
 </ion-content>
