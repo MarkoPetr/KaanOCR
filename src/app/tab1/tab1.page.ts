@@ -12,15 +12,15 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class Tab1Page {
 
-  imageData: string | null = null;
+  screenshotData: string | null = null;
 
   async pickScreenshot() {
     const photo = await Camera.getPhoto({
       source: CameraSource.Photos,
       resultType: CameraResultType.DataUrl,
-      quality: 100
+      quality: 100,
     });
 
-    this.imageData = photo.dataUrl ?? null;
+    this.screenshotData = photo.dataUrl ?? null;
   }
 }

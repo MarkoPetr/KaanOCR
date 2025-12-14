@@ -1,9 +1,16 @@
-import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tabs/tab1', pathMatch: 'full' },
-  { path: 'tabs', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsModule) }
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsModule)
+  },
+  {
+    path: '',
+    redirectTo: 'tabs',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

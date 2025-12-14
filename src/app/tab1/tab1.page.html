@@ -9,12 +9,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="paper-container">
-  <div class="paper" *ngIf="imageData">
-    <img [src]="imageData" />
-  </div>
-
-  <div class="hint" *ngIf="!imageData">
-    Izaberi screenshot iz galerije
+<ion-content>
+  <div *ngIf="screenshotData" class="paper">
+    <img [src]="screenshotData" />
   </div>
 </ion-content>
